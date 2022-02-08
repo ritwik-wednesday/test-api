@@ -5,6 +5,7 @@ import { isTestEnv, logger } from '@utils/index';
 import cluster from 'cluster';
 import os from 'os';
 import 'source-map-support/register';
+import { create } from 'apisauce';
 
 const totalCPUs = os.cpus().length;
 
@@ -19,6 +20,20 @@ export const init = () => {
 
   app.use(express.json());
   app.use(rTracer.expressMiddleware());
+
+  app.use('/pdf', async (req, res) => {
+    const apiClient = create({ baseURL: process.env.PDF_MICROSERIVCE_SD_ENDPOINT });
+
+    const data = {
+      html:
+        req.body.html ||
+        '<html><head><title>Test PDF</title></head><body>// The contents of our PDF will go here...</body></html>'
+    };
+    const pdf = await apiClient.post('/pdf', data);
+
+    res.set('Content-Type', 'application/pdf');
+    res.send(pdf);
+  });
 
   app.get('/', (req, res) => {
     const message = 'Service up and running!';
