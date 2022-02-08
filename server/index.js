@@ -24,12 +24,19 @@ export const init = () => {
   app.post('/get-pdf', async (req, res) => {
     const apiClient = create({ baseURL: process.env.PDF_MICROSERIVCE_SD_ENDPOINT });
 
+    const options = {
+      headers: {
+        Accept: 'application/pdf',
+        'Content-Type': 'application/pdf'
+      }
+    };
+
     const data = {
       html:
         req.body.html ||
         '<html><head><title>Test PDF</title></head><body>// The contents of our PDF will go here...</body></html>'
     };
-    const pdf = await apiClient.post('/pdf', data);
+    const pdf = await apiClient.post('/pdf', data, options);
 
     res.set('Content-Type', 'application/pdf');
     res.send(pdf);
