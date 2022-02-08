@@ -21,7 +21,7 @@ export const init = () => {
   app.use(express.json());
   app.use(rTracer.expressMiddleware());
 
-  app.use('/pdf', async (req, res) => {
+  app.post('/pdf', async (req, res) => {
     const apiClient = create({ baseURL: process.env.PDF_MICROSERIVCE_SD_ENDPOINT });
 
     const data = {
