@@ -23,14 +23,13 @@ export const init = () => {
 
   app.use('/get-pdf', async (req, res) => {
     try {
-      logger().info({ req });
       const apiClient = create({ baseURL: process.env.PDF_MICROSERIVCE_SD_ENDPOINT });
 
       const options = {
         headers: {
-          Accept: 'application/pdf',
-          'Content-Type': 'application/pdf'
-        }
+          Accept: 'application/pdf'
+        },
+        responseType: 'arraybuffer'
       };
 
       const data = {
@@ -40,8 +39,10 @@ export const init = () => {
       };
       const pdf = await apiClient.post('/pdf', data, options);
 
-      res.set('Content-Type', 'application/pdf');
-      res.send(pdf);
+      Object.keys(pdf.headers).forEach(key => {
+        res.set(key, pdf.headers[key]);
+      });
+      res.send(pdf.data);
     } catch (error) {
       console.log(error.message);
       logger().info(error.message);
