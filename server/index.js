@@ -35,10 +35,10 @@ export const init = () => {
 
       const data = {
         html:
-          req.body.html ||
+          req.body.pdfHtml ||
           '<html><head><title>Test PDF</title></head><body>// The contents of our PDF will go here...</body></html>'
       };
-      const pdf = await apiClient.post('/pdf', JSON.stringify(data), options);
+      const pdf = await apiClient.post('/pdf', data, options);
 
       res.set('Content-Type', 'application/pdf');
       res.send(pdf);
