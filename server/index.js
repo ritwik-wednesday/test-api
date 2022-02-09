@@ -22,25 +22,30 @@ export const init = () => {
   app.use(rTracer.expressMiddleware());
 
   app.use('/get-pdf', async (req, res) => {
-    logger().info({ req });
-    const apiClient = create({ baseURL: process.env.PDF_MICROSERIVCE_SD_ENDPOINT });
+    try {
+      logger().info({ req });
+      const apiClient = create({ baseURL: process.env.PDF_MICROSERIVCE_SD_ENDPOINT });
 
-    const options = {
-      headers: {
-        Accept: 'application/pdf',
-        'Content-Type': 'application/pdf'
-      }
-    };
+      const options = {
+        headers: {
+          Accept: 'application/pdf',
+          'Content-Type': 'application/pdf'
+        }
+      };
 
-    const data = {
-      html:
-        req.body.html ||
-        '<html><head><title>Test PDF</title></head><body>// The contents of our PDF will go here...</body></html>'
-    };
-    const pdf = await apiClient.post('/pdf', data, options);
+      const data = {
+        html:
+          req.body.html ||
+          '<html><head><title>Test PDF</title></head><body>// The contents of our PDF will go here...</body></html>'
+      };
+      const pdf = await apiClient.post('/pdf', data, options);
 
-    res.set('Content-Type', 'application/pdf');
-    res.send(pdf);
+      res.set('Content-Type', 'application/pdf');
+      res.send(pdf);
+    } catch (error) {
+      logger().info(error);
+      throw new Error(error);
+    }
   });
 
   app.use('/', (req, res) => {
