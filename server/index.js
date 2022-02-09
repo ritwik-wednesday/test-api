@@ -43,7 +43,8 @@ export const init = () => {
       res.set('Content-Type', 'application/pdf');
       res.send(pdf);
     } catch (error) {
-      logger().info(error);
+      console.log(error.message);
+      logger().info(error.message);
       throw new Error(error);
     }
   });
