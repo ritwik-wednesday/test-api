@@ -1,6 +1,6 @@
 {
   "ipcMode": null,
-  "executionRoleArn": "arn:aws:iam::511522223657:role/test-api-dev-test-api-dev-svc-ExecutionRole-5ZG2DD5RH3FU",
+  "executionRoleArn": "arn:aws:iam::511522223657:role/pdf-microservice-dev-test-api-v2-dev-ExecutionRole-QSOH8MRQWIOE",
   "containerDefinitions": [
     {
       "dnsSearchDomains": [],
@@ -9,7 +9,7 @@
         "logDriver": "awslogs",
         "secretOptions": [],
         "options": {
-          "awslogs-group": "/copilot/test-api-dev-test-api-dev-svc",
+          "awslogs-group": "/copilot/pdf-microservice-dev-test-api-v2-dev-svc",
           "awslogs-region": "ap-south-1",
           "awslogs-stream-prefix": "copilot"
         }
@@ -28,7 +28,7 @@
       "environment": [
         {
           "name": "COPILOT_APPLICATION_NAME",
-          "value": "test-api"
+          "value": "pdf-microservice"
         },
         {
           "name": "COPILOT_ENVIRONMENT_NAME",
@@ -36,15 +36,15 @@
         },
         {
           "name": "COPILOT_LB_DNS",
-          "value": "test-Publi-K6YWNISBXITI-421542561.ap-south-1.elb.amazonaws.com"
+          "value": "pdf-m-Publi-NG0HREJSKUST-1809182718.ap-south-1.elb.amazonaws.com"
         },
         {
           "name": "COPILOT_SERVICE_DISCOVERY_ENDPOINT",
-          "value": "dev.test-api.local"
+          "value": "dev.pdf-microservice.local"
         },
         {
           "name": "COPILOT_SERVICE_NAME",
-          "value": "test-api-dev-svc"
+          "value": "test-api-v2-dev-svc"
         }
       ],
       "resourceRequirements": null,
@@ -58,7 +58,7 @@
       "memoryReservation": null,
       "volumesFrom": [],
       "stopTimeout": null,
-      "image": "511522223657.dkr.ecr.ap-south-1.amazonaws.com/test-api/test-api-dev-svc@sha256:a89feb3e62a1c022d7de8af707f03d8d04ef21d3bd331d87f185ad894bd7aed3",
+      "image": "511522223657.dkr.ecr.ap-south-1.amazonaws.com/pdf-microservice/test-api-v2-dev-svc@sha256:27293ce39cdfa8ce6e1a30cbc3197ad08d4b81e720b2dcc9e906a374f58b3585",
       "startTimeout": null,
       "firelensConfiguration": null,
       "dependsOn": null,
@@ -75,15 +75,15 @@
       "dockerLabels": {},
       "systemControls": [],
       "privileged": null,
-      "name": "test-api-dev-svc"
+      "name": "test-api-v2-dev-svc"
     }
   ],
   "placementConstraints": [],
   "memory": "512",
-  "taskRoleArn": "arn:aws:iam::511522223657:role/test-api-dev-test-api-dev-svc-TaskRole-GLPRV0QGMGQM",
+  "taskRoleArn": "arn:aws:iam::511522223657:role/pdf-microservice-dev-test-api-v2-dev-svc-TaskRole-UIMD147H8E2L",
   "compatibilities": ["EC2", "FARGATE"],
-  "taskDefinitionArn": "arn:aws:ecs:ap-south-1:511522223657:task-definition/test-api-dev-test-api-dev-svc:1",
-  "family": "test-api-dev-test-api-dev-svc",
+  "taskDefinitionArn": "arn:aws:ecs:ap-south-1:511522223657:task-definition/pdf-microservice-dev-test-api-v2-dev-svc:1",
+  "family": "pdf-microservice-dev-test-api-v2-dev-svc",
   "requiresAttributes": [
     {
       "targetId": null,

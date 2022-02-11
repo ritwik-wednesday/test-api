@@ -35,14 +35,14 @@ jobs:
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
           task-definition: task-definition-dev.json
-          container-name: test-api-dev-svc
+          container-name: test-api-v2-dev-svc
           image: ${{ steps.login-ecr.outputs.registry }}/${{ secrets.AWS_ECR_REPOSITORY }}:${{ github.sha }}
       - name: Deploy to Amazon ECS service
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.test-api-container.outputs.task-definition }}
-          service: test-api-dev-test-api-dev-svc-Service-FSnbFUvuoe58
-          cluster: test-api-dev-Cluster-CZ3yxQ5kM5eW
+          service: pdf-microservice-dev-test-api-v2-dev-svc-Service-8jdKRXMbu3fT
+          cluster: pdf-microservice-dev-Cluster-HiNp4c82rh4g
       - name: Logout of Amazon ECR
         if: always()
         run: docker logout ${{ steps.login-ecr.outputs.registry }}
