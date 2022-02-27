@@ -32,12 +32,7 @@ export const init = () => {
         responseType: 'arraybuffer'
       };
 
-      const data = {
-        html:
-          req.body.pdfHtml ||
-          '<html><head><title>Test PDF</title></head><body>// The contents of our PDF will go here...</body></html>'
-      };
-      const pdf = await apiClient.post('/pdf', data, options);
+      const pdf = await apiClient.post('/pdf', req.body, options);
 
       Object.keys(pdf.headers).forEach(key => {
         res.set(key, pdf.headers[key]);
